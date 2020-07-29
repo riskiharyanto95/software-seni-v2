@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  form(action='/articles/api/search-article', method='POST')
+  form(action='/articles/search-article', method='POST')
     .row-fluid
       .span6
         input(type='text', name='title', value='', placeholder='Type Name Article')
@@ -13,6 +13,20 @@ block content
     .row-fluid
       .span6 
         input(type='submit', value='Search')
-    .box-inside 
-      a.btn(href='/') Back to Home »
-  
+
+    each article in articles
+      .row-fluid
+        .box-inside
+          .article-list
+            h4= article.headline.main ? article.headline.main : ''
+            h5= article.abstract ? article.abstract : ''
+            - var img = article.multimedia[0].url ? path_image+article.multimedia[0].url : ''
+            img(src=img)
+            h6= article.lead_paragraph ? article.lead_paragraph : ''
+            a.btn(href=article.web_url) Read more »
+            hr
+    
+    .row-fluid
+      .box-inside 
+        a.btn(href='/') Back to Home »
+    

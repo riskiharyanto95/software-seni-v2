@@ -5,10 +5,11 @@ const Joi = require('@hapi/joi');
 const axios = require("axios");
 
 exports.index = function(req, res, next) {
-    res.render('article', { title: 'article' });
+    res.render('article', { articles: [], path_image:process.env.APP_URL_IMAGES_NY_TIMES });
 };
 
 exports.searchArticle = async function(req, res, next) {  
+    var dataArticle = []
     const schema = Joi.object({
         sortBy: Joi.string()
             .required()
@@ -21,23 +22,13 @@ exports.searchArticle = async function(req, res, next) {
         url = req.body.title ? url+"&q="+req.body.title+"&sort="+req.body.sortBy+"&api-key="+process.env.APP_KEY_NY_TIMES : url+"&sort="+req.body.sortBy+"&api-key="+process.env.APP_KEY_NY_TIMES
         await axios.get(url)
         .then((response) => {
-            res.send({
-                status : 200,
-                data : response.data.response.docs 
-            })
+            dataArticle = response.data.response.docs;
         })
         .catch((error) => {
             console.log(error)
-            res.send({
-                status: 500,
-                message: 'Internal Server Error'
-            })
         })
-    } else {
-        res.send({
-            status: 500,
-            message: error.details[0].message
-        })
-    }
+    } 
+
+    res.render('article', { articles: dataArticle, path_image:process.env.APP_URL_IMAGES_NY_TIMES  });
 };
 

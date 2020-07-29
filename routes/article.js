@@ -13,6 +13,6 @@ var articleController = require('../controllers/article');
 * router
 */
 router.get('/', articleController.index);
-router.post('/api/search-article', articleController.searchArticle);
+router.post('/search-article', articleController.searchArticle);
 
 module.exports = router;
