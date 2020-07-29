@@ -1,7 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
-  a.btn(href='/') Back to Home »
+  form(action='/articles/api/search-article', method='POST')
+    .row-fluid
+      .span6
+        input(type='text', name='title', value='', placeholder='Type Name Article')
+      .span6
+        select(name='sortBy')
+            option(value='') -- Order by --
+            option(value='newest') Newest
+            option(value='oldest') Oldest
+    .row-fluid
+      .span6 
+        input(type='submit', value='Search')
+    .box-inside 
+      a.btn(href='/') Back to Home »
+  
