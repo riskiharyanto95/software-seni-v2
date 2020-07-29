@@ -3,6 +3,10 @@
 # NOTED
 # This Application only available search Article
 # Input Title and Sort (newest/oldest) is required
-# Please, input title wihout special character, only string (if use special character not yet handling, impact data not found)
-# Data to large, because without limit call API and impact error view. So you can serach by title
 # Default param startDate = 20191201 endDate = 20191202
+# Maybe data response is not consistent, impact view error. So, please search Sample data according title have passed testing local. Sample title data below:
+
+# Senate Confirms Dan Brouillette to Lead Energy Department
+# Jimmy Carter Back in the Hospital
+# NATO, Tariffs, Cyber Monday: Your Monday Evening Briefing
+# Facebook Gives Workers a Chatbot to Appease That Prying Uncle
